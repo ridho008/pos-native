@@ -22,6 +22,23 @@
             </div>
             <!-- #User Info -->
             <!-- Menu -->
+            <?php 
+            if($page == 'barang') {
+                $barangAktif = 'active';
+            }
+
+            if($page == 'pelanggan') {
+                $pelangganAktif = 'active';
+            }
+
+            if($page == 'pengguna') {
+                $penggunaAktif = 'active';
+            }
+
+            if($page == 'penjualan') {
+                $penggunaAktif = 'active';
+            }
+            ?>
             <div class="menu">
                 <ul class="list">
                     <li class="header">MAIN NAVIGATION</li>
@@ -32,25 +49,25 @@
                         </a>
                     </li>
                     <?php if($_SESSION['user']['level'] == 1) : ?>
-                    <li>
+                    <li class="<?= $barangAktif; ?>">
                         <a href="?p=barang">
                             <i class="material-icons">view_module</i>
                             <span>Barang</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="<?= $pelangganAktif; ?>">
                         <a href="?p=pelanggan">
                             <i class="material-icons">supervisor_account</i>
                             <span>Pelanggan</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="<?= $penggunaAktif; ?>">
                         <a href="?p=pengguna">
                             <i class="material-icons">account_circle</i>
                             <span>Pengguna</span>
                         </a>
                     </li>
-                    <li>
+                    <li class="<?= $penjualanAktif; ?>">
                         <a href="?p=penjualan&kodepj=<?= $kode; ?>">
                             <i class="material-icons">assignment</i>
                             <span>Penjualan</span>
