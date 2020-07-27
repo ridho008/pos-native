@@ -1,3 +1,4 @@
+
     <!-- Jquery Core Js -->
     <script src="plugins/jquery/jquery.min.js"></script>
 
@@ -50,6 +51,7 @@
 
     <!-- Demo Js -->
     <script src="js/demo.js"></script>
+    <script src="js/myscript.js"></script>
 </body>
 
 </html>

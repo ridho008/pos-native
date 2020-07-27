@@ -9,14 +9,25 @@ if(isset($_POST['tambah'])) {
     // $profit = htmlspecialchars($_POST['profit']);
 
     $total = $hrg_beli - $hrg_jual;
+    $tot = abs($total);
 
-    $sql = $conn->query("INSERT INTO tb_barang VALUES (null, '$kode', '$nama_barang', '$satuan', '$hrg_beli', '$stok', '$hrg_jual', '$total')") or die(mysqli_error($conn));
+    $sql = $conn->query("INSERT INTO tb_barang VALUES (null, '$kode', '$nama_barang', '$satuan', '$hrg_beli', '$stok', '$hrg_jual', '$tot')") or die(mysqli_error($conn));
     if($sql) {
         echo "<script>alert('Data Berhasil Ditambahkan.');window.location='?p=barang';</script>";
     } else {
         echo "<script>alert('Data Gagal Ditambahkan.');window.location='?p=barang';</script>";
     }
 }
+
+// mencari kode brg paling besar
+$query = $conn->query("SELECT MAX(kode_barcode) as kodebrg FROM tb_barang") or die(mysqli_error($conn));
+$data = $query->fetch_assoc();
+$kdbrg = $data['kodebrg'];
+
+$noUrut = (int) substr($kdbrg, 3, 3);
+$noUrut++;
+$char = "BRG";
+$kodeBarcode = $char . sprintf("%03s", $noUrut);
 
 ?>
 <div class="row clearfix">
@@ -36,7 +47,7 @@ if(isset($_POST['tambah'])) {
                             <div class="form-line">
                                 <label for="kode_barang">Kode Barcode</label>
                                 <input type="text" name="kode_barang" id="
-                                kode_barang" class="form-control" placeholder="Masukan kode barang" />
+                                kode_barang" readonly="" style="background: #eee;" value="<?= $kodeBarcode; ?>" class="form-control" placeholder="Masukan kode barang" />
                             </div>
                         </div>
                         <div class="form-group">

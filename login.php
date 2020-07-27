@@ -27,19 +27,20 @@ if(isset($_POST['masuk'])) {
     $result = $conn->query("SELECT * FROM tb_user WHERE email_user = '$email'") or die($conn);
     if($result->num_rows === 1) {
         $rowL = $result->fetch_assoc();
-        if(password_verify($password, $rowL['pass_user']));
-        // set session
-        $_SESSION['user'] = $rowL;
-        // var_dump($_SESSION['user']); die;
+        if(password_verify($password, $rowL['pass_user'])) {
+            // set session
+            $_SESSION['user'] = $rowL;
+            // var_dump($_SESSION['user']); die;
 
-        // SET COOKIE
-        if(isset($_POST['rememberme'])) {
-            setcookie('id', $rowL['id_user'], time() + 60);
-            setcookie('key', hash('sha256', $rowL['email']), time() + 60);
+            // SET COOKIE
+            if(isset($_POST['rememberme'])) {
+                setcookie('id', $rowL['id_user'], time() + 60);
+                setcookie('key', hash('sha256', $rowL['email']), time() + 60);
+            }
+            header("Location: index.php");
+            exit;
         }
-
-        header("Location: index.php");
-        exit;
+        $error = true;
     }
 }
 ?>
@@ -80,6 +81,12 @@ if(isset($_POST['masuk'])) {
             <div class="body">
                 <form id="sign_in" method="POST" action="">
                     <div class="msg">Masuk Sekarang</div>
+                    <?php if(isset($error)) : ?>
+                        <div class="alert alert-warning alert-dismissible" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                            Email/Password anda salah!
+                        </div>
+                    <?php endif; ?>
                     <div class="input-group">
                         <span class="input-group-addon">
                             <i class="material-icons">person</i>

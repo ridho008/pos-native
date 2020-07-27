@@ -2,6 +2,8 @@
 error_reporting(0);
 session_start();
 require_once 'config/koneksi.php';
+require_once 'config/functions.php';
+require_once 'page/penjualan/kodepj.php';
 
 if(!isset($_SESSION['user'])) {
     header("Location: login.php");
@@ -58,6 +60,26 @@ $aksi = $_GET['aksi'];
                     if($aksi == '') {
                         require_once 'page/profile/editprofile.php';
                     }
+                } else if($page == 'gantipass') {
+                    if($aksi == '') {
+                        require_once 'page/profile/gantipass.php';
+                    }
+                } else if($page == 'pengguna') {
+                    if($aksi == '') {
+                        require_once 'page/pengguna/pengguna.php';
+                    } else if($aksi == 'tambah') {
+                        require_once 'page/pengguna/tambah.php';
+                    } else if($aksi == 'ubah') {
+                        require_once 'page/pengguna/ubah.php';
+                    } else if($aksi == 'hapus') {
+                        require_once 'page/pengguna/hapus.php';
+                    }
+                } else if($page == 'penjualan') {
+                    if($aksi == '') {
+                        require_once 'page/penjualan/penjualan.php';
+                    }
+                } else {
+                    echo "<h2>BERANDA</h2>";
                 }
                 ?>
             </div>

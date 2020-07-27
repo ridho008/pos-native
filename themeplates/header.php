@@ -21,6 +21,14 @@
         } else if($aksi == 'ubah') {
             echo "Ubah Data Pelanggan";
         }
+       } else if($page == 'pengguna') {
+        if($aksi == '') {
+            echo "Halaman Pengguna";
+        } else if($aksi == 'tambah') {
+            echo "Tambah Pengguna";
+        } else if($aksi == 'ubah') {
+            echo "Ubah Pengguna";
+        }
        } else {
         echo "Halaman Beranda";
        }

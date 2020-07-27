@@ -13,10 +13,7 @@
                         <i class="material-icons" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true">keyboard_arrow_down</i>
                         <ul class="dropdown-menu pull-right">
                             <li><a href="?p=profile"><i class="material-icons">person</i>Profile</a></li>
-                            <li role="seperator" class="divider"></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">group</i>Followers</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">shopping_cart</i>Sales</a></li>
-                            <li><a href="javascript:void(0);"><i class="material-icons">favorite</i>Likes</a></li>
+                            <li><a href="?p=gantipass"><i class="material-icons">favorite</i>Ganti Password</a></li>
                             <li role="seperator" class="divider"></li>
                             <li><a href="logout.php"><i class="material-icons">input</i>Sign Out</a></li>
                         </ul>
@@ -34,6 +31,7 @@
                             <span>Home</span>
                         </a>
                     </li>
+                    <?php if($_SESSION['user']['level'] == 1) : ?>
                     <li>
                         <a href="?p=barang">
                             <i class="material-icons">view_module</i>
@@ -46,6 +44,19 @@
                             <span>Pelanggan</span>
                         </a>
                     </li>
+                    <li>
+                        <a href="?p=pengguna">
+                            <i class="material-icons">account_circle</i>
+                            <span>Pengguna</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="?p=penjualan&kodepj=<?= $kode; ?>">
+                            <i class="material-icons">assignment</i>
+                            <span>Penjualan</span>
+                        </a>
+                    </li>
+                    <?php endif; ?>
 
                     <!-- Tidak Boleh Di Hapus -->
                     <li class="active"></li>

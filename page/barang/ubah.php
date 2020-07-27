@@ -13,7 +13,7 @@ if(isset($_POST['ubah'])) {
     $hrg_jual = htmlspecialchars($_POST['hrg_jual']);
     // $profit = htmlspecialchars($_POST['profit']);
 
-    if(empty($kode && $nama_barang && $satuan && $stok && $hrg_beli && $hrg_jual)) {
+    if(empty($kode && $nama_barang && $satuan && $hrg_beli && $hrg_jual)) {
         echo "<script>alert('Inputan tidak boleh kosong.');window.location='?p=barang';</script>";
         return false;
     }
